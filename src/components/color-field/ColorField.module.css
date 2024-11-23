@@ -1,0 +1,29 @@
+.colorField {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  min-width: 160px;
+}
+
+.value {
+  display: inline-block;
+  background: var(--field-color);
+  border-radius: var(--border-radius);
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  cursor: pointer;
+  transition: color var(--transition-color-out);
+
+  &:hover {
+    color: var(--field-color);
+    transition: color var(--transition-color-in);
+  }
+}

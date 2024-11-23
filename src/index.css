@@ -1,0 +1,37 @@
+:root {
+  --accent-primary: #c7c7c7;
+  --accent-secondary: #a4a1a1;
+  --border-radius: 2px;
+  --transition-color-in: 0.25s ease-in;
+  --transition-color-out: 1.25s ease-out;
+}
+
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  all: unset;
+  display: revert;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  color: #5d5757;
+  font-family: 'Host Grotesk', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+}
+
+.sr-only {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}

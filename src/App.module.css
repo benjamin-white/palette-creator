@@ -1,0 +1,25 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.circles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}

@@ -1,0 +1,15 @@
+.button {
+  background-color: var(--accent-primary);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  line-height: 1rem;
+  font-weight: 600;
+  padding: 2px 4px 2px 5px;
+  text-align: center;
+  transition: background-color var(--transition-color-out);
+
+  &:hover {
+    background-color: var(--accent-secondary);
+    transition: background-color var(--transition-color-in);
+  }
+}

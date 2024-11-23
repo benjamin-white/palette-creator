@@ -1,0 +1,81 @@
+.inputRange {
+  width: 100%;
+
+  label {
+    display: block;
+    text-align: left;
+    margin: 0;
+  }
+
+  input {
+    position: relative;
+    width: 100%;
+    z-index: 9;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 0.75rem;
+  }
+
+  /* TODO: xBrowser for FF, Edge & Safari */
+
+  /* Webkit */
+  input {
+    &:hover {
+      &::-webkit-slider-runnable-track,
+      &::-webkit-slider-thumb {
+        background: var(--accent-secondary);
+      }
+    }
+
+    &::-webkit-slider-runnable-track,
+    &::-webkit-slider-thumb {
+      transition: background-color var(--transition-color-in);
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 6px;
+      background: var(--accent-primary);
+      border-radius: var(--border-radius);
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 20px;
+      width: 10px;
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      border: 2px solid var(--accent-secondary);
+      transform: translateY(-6px);
+    }
+  }
+
+  /* Firefox */
+  input {
+    &:hover {
+      &::-moz-range-track,
+      &::-moz-range-thumsb {
+        background: var(--accent-secondary);
+      }
+    }
+
+    &::-moz-range-track,
+    &::-moz-range-thum {
+      transition: background-color var(--transition-color-in);
+    }
+  }
+
+  &::-moz-range-track {
+    height: 6px;
+    background: var(--accent-primary);
+    border-radius: var(--border-radius);
+  }
+
+  &::-moz-range-thumb {
+    height: 20px;
+    width: 10px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--accent-secondary);
+  }
+}
