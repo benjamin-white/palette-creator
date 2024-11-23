@@ -1,0 +1,8 @@
+name: Deploy
+run-name: ${{ github.actor }} is running a deployment 🚀
+on: [push]
+jobs:
+  run-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deployment triggered ${{ github.event_name }}."
