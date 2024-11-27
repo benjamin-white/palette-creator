@@ -1,8 +1,23 @@
 name: Deploy
-run-name: ${{ github.actor }} is running a deployment 🚀
-on: [push]
+run-name: Deploy started by ${{ github.actor }} 🚀
+env:
+  IMAGE_NAME: palette-creator
+  IMAGE_TAG: ${{ github.sha }}
+  # IMAGE_TAG: ${{ github.sha }}
+  # IMAGE_REGISTRY_URL: registry.domain.com
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]*"]
+    # branches:
+    #   - 'release/**'
 jobs:
-  run-preflight:
-    runs-on: ubuntu-latest
+  build_image:
+    runs-on: ubuntu-latest # could change to self-hosted
     steps:
-      - run: echo "Deployment triggered ${{ github.event_name }}."
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build image
+        run: docker build -t $IMAGE_NAME:$IMAGE_TAG .
+      # - name: Teardown
+      #   run: docker rmi $IMAGE_REGISTRY_URL/$IMAGE_NAME:$IMAGE_TAG

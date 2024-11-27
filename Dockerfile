@@ -1,42 +1,16 @@
 # syntax=docker/dockerfile:1
 
-FROM node:lts-alpine
+FROM node:lts AS build
 WORKDIR /app
-# Copy the dependencies first to improve layer caching
-COPY package.json .
-RUN npm i
-COPY . .
-# EXPOSE 3000
-# CMD ["node", "src/index.js"]
-CMD ["npm run build"]
+COPY package* ./
+RUN npm ci
+COPY src ./src
+COPY index.html tsconfig.json vite.config.ts ./
+RUN npm run build
 
-# FROM node:18-alpine3.17 as build
-
-# WORKDIR /app
-# COPY . /app
-
-# RUN npm install
-# RUN npm run build
-
-# FROM ubuntu
-# RUN apt-get update
-# RUN apt-get install nginx -y
-# COPY --from=build /app/dist /var/www/html/
-# EXPOSE 80
-# CMD ["nginx","-g","daemon off;"]
-
-##########################################
-
-# FROM node:20-alpine AS build-stage
-# WORKDIR /app
-# COPY package.json .
-# RUN npm install
-# COPY . .
-# RUN npm run build
-
-# FROM busybox:1.35
-# RUN adduser -D static
-# USER static
-# WORKDIR /home/static
-# COPY --from=build-stage /app/dist .
-# CMD ["busybox", "httpd", "-f", "-v", "-p", "8080"]
+FROM nginx:alpine
+RUN chown -R nginx /etc/nginx; 
+USER nginx:nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build app/dist /usr/share/nginx/html
+# Re-using the ENTRYPOINT from the base nginx image
